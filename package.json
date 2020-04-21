@@ -16,6 +16,7 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
-    "env-cmd": "^10.1.0"
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.3"
   }
 }
