@@ -58,7 +58,7 @@ app.get('*', (req, res) => {
   res.render('notfound', {...boilerplate, title: 'Not Found', notFoundMessage: 'Page not found.'});
 });
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Express server is up on port ${port}`);
 });
