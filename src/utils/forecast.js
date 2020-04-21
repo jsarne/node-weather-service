@@ -1,20 +1,20 @@
 const request = require('request');
 
 const forecast = (latitude, longitude, callback) => {
-  const darkSkyUrl = `https://api.darksky.net/forecast/${process.env.DARKSKY_API_KEY}/${latitude},${longitude}`;
+  const weatherstackUrl = `http://api.weatherstack.com/forecast?access_key=${process.env.WEATHERCAST_API_KEY}&units=f&query=${latitude},${longitude}`;
 
-  request({url: darkSkyUrl, json: true}, (err, {statusCode, statusMessage, body}) => {
+  request({url: weatherstackUrl, json: true}, (err, {statusCode, statusMessage, body}) => {
     if (err) {
-      callback({code: -1, message: 'Unable to reach darksky weather service'}, undefined);
+      callback({code: -1, message: 'Unable to reach weather service'}, undefined);
     } else if (statusCode != 200) {
       callback({code: statusCode, message: statusMessage}, undefined);
     } else if (body.error) {  // not sure how to trigger this?
       callback({code: -2, message: body.error});
     } else {
-      const temp = body.currently.temperature;
-      const precipProb = body.daily.data[0].precipProbability;
-      const forecast = body.daily.data[0].summary;
-      const forecastMsg = `Today's forecast is ${forecast.toLowerCase()} Probability of precipitation today is ${precipProb*100}%. Currently it is ${temp} degrees.`;
+      const temp = body.current.temperature;
+      const desc = `${body.current.weather_descriptions.join(' and ')} and `;
+      const wind = `Wind is ${body.current.wind_dir} at ${body.current.wind_speed}mph.`;
+      const forecastMsg = `Per WeatherCast, it is currently ${desc} ${temp} degrees Farenheit. ${wind}`;
       callback(undefined, {forecastMsg});
     }
   });
