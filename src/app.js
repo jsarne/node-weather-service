@@ -14,7 +14,7 @@ app.set('views', viewsPath);
 hbs.registerPartials(partialsPath);
 app.use(express.static(publicPath));
 
-const boilerplate = {title: 'Weather from App.js', footerText: 'Created by oolong'};
+const boilerplate = {title: 'Weather Node App', footerText: 'Created by oolong'};
 
 app.get('', (req, res) => {
   res.render('index', boilerplate);
