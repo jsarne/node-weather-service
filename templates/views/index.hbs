@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {{>title}}
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    <div class="main-content">
+      {{>header}}
+      <p>Git yer forecast yo!</p>
+      <form id="location-form">
+        <input id="location-input" placeholder="Location">
+        <button>Search</button>
+      </form>
+      <p id="location-forecast"></p>
+      <p id="location-details"></p>
+    </div>
+    {{>footer}}
+    <script src="/js/app.js"></script>
+  </body>
+</html>
